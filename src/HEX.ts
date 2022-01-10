@@ -27,14 +27,14 @@ type StringFromArray<
   : Result;
 
 // Size extends 6 don't work because type too complex
-export type HEX<
+type HEX<
   Size extends 3 | 6,
   Result extends HEXDigit[] = []
 > = Result["length"] extends Size
   ? `#${StringFromArray<Result>}`
   : HEX<Size, [...Result, HEXDigit]>;
 
-// export type HEX =
+// type HEX =
 //   | `#${HEXDigit}${HEXDigit}${HEXDigit}`
 //   | `#${HEXDigit}${HEXDigit}${HEXDigit}${HEXDigit}${HEXDigit}${HEXDigit}`;
 

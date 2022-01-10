@@ -1,25 +1,25 @@
-export type Plus = "+";
-export type Minus = "-";
-export type Sign = Plus | Minus;
+type Plus = "+";
+type Minus = "-";
+type Sign = Plus | Minus;
 
-export type CNumber = [Sign, number];
+type CNumber = [Sign, number];
 
-export type NumberToCNumber<
-  Number extends number,
-  NumberSign extends Sign = Plus
-> = [NumberSign, Number];
+type NumberToCNumber<Number extends number, NumberSign extends Sign = Plus> = [
+  NumberSign,
+  Number
+];
 
-export type NumberFromCNumber<Value extends CNumber> = Value[1];
-export type SignFromCNumber<Value extends CNumber> = Value[0];
+type NumberFromCNumber<Value extends CNumber> = Value[1];
+type SignFromCNumber<Value extends CNumber> = Value[0];
 
-export type ArrayFromNumber<
+type ArrayFromNumber<
   Number extends number,
   Counter extends any[] = []
 > = Counter["length"] extends Number
   ? Counter
   : ArrayFromNumber<Number, [...Counter, 0]>;
 
-export type Inc<Value extends CNumber> = NumberFromCNumber<Value> extends 0
+type Inc<Value extends CNumber> = NumberFromCNumber<Value> extends 0
   ? NumberToCNumber<1>
   : SignFromCNumber<Value> extends Plus
   ? NumberToCNumber<
@@ -37,7 +37,7 @@ export type Inc<Value extends CNumber> = NumberFromCNumber<Value> extends 0
       Minus
     >;
 
-export type Dec<Value extends CNumber> = NumberFromCNumber<Value> extends 0
+type Dec<Value extends CNumber> = NumberFromCNumber<Value> extends 0
   ? NumberToCNumber<1, Minus>
   : SignFromCNumber<Value> extends Plus
   ? NumberToCNumber<
